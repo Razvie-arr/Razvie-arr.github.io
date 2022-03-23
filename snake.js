@@ -1,9 +1,10 @@
 let canvas = document.querySelector('#game');
 let context = canvas.getContext('2d');
-
+let scoreDiv = document.querySelector('#score');
+scoreDiv.innerHTML = '0';
 //size of one cell
 let grid = 16;
-
+let score = 0;
 //snake's speed
 let count = 0;
 
@@ -31,7 +32,6 @@ function loop() {
     if (++count < 4) {
         return;
     }
-
     count = 0;
     context.clearRect(0, 0, canvas.width, canvas.height);
     snake.x += snake.dx;
@@ -61,6 +61,7 @@ function loop() {
     snake.cells.forEach(function (cell, index) {
         context.fillRect(cell.x, cell.y, grid - 1, grid - 1);
         if (cell.x === apple.x && cell.y === apple.y) {
+            incrementScore();
             snake.maxCells++;
             apple.x = getRandomInt(0, 25) * grid;
             apple.y = getRandomInt(0, 25) * grid;
@@ -74,7 +75,7 @@ function loop() {
                 snake.maxCells = 4;
                 snake.dx = grid;
                 snake.dy = 0;
-
+                resetScore();
                 apple.x = getRandomInt(0, 25) * grid;
                 apple.y = getRandomInt(0, 25) * grid;
             }
@@ -82,8 +83,17 @@ function loop() {
     });
 }
 
+function incrementScore() {
+    score++;
+    scoreDiv.innerHTML = score.toString();
+}
+
+function resetScore() {
+    score = 0;
+    scoreDiv.innerHTML = score.toString();
+}
+
 document.addEventListener('keydown', function (e) {
-    console.log(e);
     switch (e.code) {
         case 'ArrowLeft':
         case 'KeyA':
@@ -119,5 +129,6 @@ document.addEventListener('keydown', function (e) {
             snake.dx = 0;
     }
 });
+
 
 requestAnimationFrame(loop);
