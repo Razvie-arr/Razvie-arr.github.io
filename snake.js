@@ -1,12 +1,18 @@
 let canvas = document.querySelector('#game');
 let context = canvas.getContext('2d');
-let scoreDiv = document.querySelector('#score');
-scoreDiv.innerHTML = '0';
+
+let scoreElement = document.querySelector('#score');
+scoreElement.innerHTML = '0';
+
+let pauseElement = document.querySelector('#pause');
+
 //size of one cell
 let grid = 16;
 let score = 0;
 //snake's speed
 let count = 0;
+let myReq;
+let paused = false;
 
 let snake = {
     x: 160,
@@ -27,8 +33,8 @@ function getRandomInt(min, max) {
 }
 
 function loop() {
-    requestAnimationFrame(loop);
 
+    myReq = requestAnimationFrame(loop);
     if (++count < 4) {
         return;
     }
@@ -85,12 +91,28 @@ function loop() {
 
 function incrementScore() {
     score++;
-    scoreDiv.innerHTML = score.toString();
+    scoreElement.innerHTML = score.toString();
 }
 
 function resetScore() {
     score = 0;
-    scoreDiv.innerHTML = score.toString();
+    scoreElement.innerHTML = score.toString();
+}
+
+function pause() {
+    paused = true;
+    context.filter = 'blur(10px)';
+    pauseElement.style.display = 'block';
+    setTimeout(() => {
+        cancelAnimationFrame(myReq);
+    }, 100);
+}
+
+function resume() {
+    paused = false;
+    context.filter = 'blur(0)';
+    pauseElement.style.display = 'none';
+    requestAnimationFrame(loop);
 }
 
 document.addEventListener('keydown', function (e) {
@@ -127,6 +149,15 @@ document.addEventListener('keydown', function (e) {
         case 'KeyR':
             snake.dy = 0;
             snake.dx = 0;
+            break;
+        case 'Space':
+            e.preventDefault();
+            if (paused) {
+                resume();
+            } else {
+                pause();
+            }
+            break;
     }
 });
 

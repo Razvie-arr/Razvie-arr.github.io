@@ -8,7 +8,12 @@ body {
     background: black;
 
 }
-
+.game-pause {
+    display: none;
+    color: red;
+    text-align: center;
+    font-size: 3rem;
+}
 .snake {
     display: flex;
     flex-direction: column;
