@@ -6,7 +6,7 @@ body {
 
 body {
     background: black;
-
+    touch-action: none;
 }
 .game-pause {
     display: none;
@@ -24,4 +24,10 @@ body {
 canvas {
     margin: 0;
     border: 1px solid white;
+}
+
+@media screen and (max-width: 600px) {
+    #guide {
+        display: none;
+    }
 }

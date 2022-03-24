@@ -3,10 +3,13 @@
 <head>
     <title>Snake</title>
     <link rel="stylesheet" href="snake.css">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 </head>
 <body>
-    <div style="color: white">Press R to restart game</div>
-    <div style="color: white">Press Space to pause/resume game</div>
+    <div id="guide">
+        <div style="color: white">Press R to restart game</div>
+        <div style="color: white">Press Space to pause/resume game</div>
+    </div>
     <div class="game-pause" id="pause"> GAME PAUSED</div>
     <div class="snake">
         <div style="color: white">Score:
@@ -14,6 +17,7 @@
         </div>
         <canvas id="game" width="400" height="400"></canvas>
     </div>
+    <script src="swipe.js"></script>
     <script src="snake.js"></script>
 </body>
 </html>

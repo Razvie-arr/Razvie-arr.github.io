@@ -115,35 +115,52 @@ function resume() {
     requestAnimationFrame(loop);
 }
 
+function moveLeft() {
+    if (snake.dx === 0) {
+        snake.dx = -grid;
+        snake.dy = 0;
+    }
+}
+
+function moveRight() {
+    if (snake.dx === 0) {
+        snake.dx = grid;
+        snake.dy = 0;
+    }
+}
+
+function moveDown() {
+    if (snake.dy === 0) {
+        snake.dy = grid;
+        snake.dx = 0;
+    }
+}
+
+function moveUp() {
+    if (snake.dy === 0) {
+        snake.dy = -grid;
+        snake.dx = 0;
+    }
+}
+
 document.addEventListener('keydown', function (e) {
+    e.preventDefault();
     switch (e.code) {
         case 'ArrowLeft':
         case 'KeyA':
-            if (snake.dx === 0) {
-                snake.dx = -grid;
-                snake.dy = 0;
-            }
+            moveLeft();
             break;
         case 'ArrowUp':
         case 'KeyW':
-            if (snake.dy === 0) {
-                snake.dy = -grid;
-                snake.dx = 0;
-            }
+            moveUp();
             break;
         case 'ArrowRight':
         case 'KeyD':
-            if (snake.dx === 0) {
-                snake.dx = grid;
-                snake.dy = 0;
-            }
+            moveRight();
             break;
         case 'ArrowDown':
         case 'KeyS':
-            if (snake.dy === 0) {
-                snake.dy = grid;
-                snake.dx = 0;
-            }
+            moveDown();
             break;
         //restart game
         case 'KeyR':
@@ -151,7 +168,6 @@ document.addEventListener('keydown', function (e) {
             snake.dx = 0;
             break;
         case 'Space':
-            e.preventDefault();
             if (paused) {
                 resume();
             } else {
@@ -160,6 +176,14 @@ document.addEventListener('keydown', function (e) {
             break;
     }
 });
+
+//handle swipes for mobile phones
+let swiper = new Swipe('body');
+swiper.onLeft(function() { moveLeft();});
+swiper.onRight(function() { moveRight(); });
+swiper.onUp(function() { moveUp() });
+swiper.onDown(function() { moveDown(); });
+swiper.run();
 
 
 requestAnimationFrame(loop);
