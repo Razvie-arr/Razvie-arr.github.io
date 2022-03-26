@@ -1,7 +1,7 @@
 const staticDevSnake = "dev-snake-site-v2"
 const assets = [
   "/",
-  "/snake.html",
+  "/index.html",
   "/snake.css",
   "/snake.js",
   "/swipe.js",

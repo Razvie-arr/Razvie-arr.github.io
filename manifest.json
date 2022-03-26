@@ -1,7 +1,7 @@
 {
  "name": "Snake",
  "short_name": "Snake",
- "start_url": "snake.html",
+ "start_url": "index.html",
  "display": "standalone",
  "theme_color": "#000000",
  "background_color": "#000000",
