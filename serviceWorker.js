@@ -1,10 +1,10 @@
-const staticDevSnake = "dev-snake-site-v1"
+const staticDevSnake = "dev-snake-site-v2"
 const assets = [
   "/",
   "/snake.html",
-  "/css/snake.css",
-  "/js/snake.js",
-  "/js/swipe.js",
+  "/snake.css",
+  "/snake.js",
+  "/swipe.js",
 ]
 
 self.addEventListener("install", installEvent => {
