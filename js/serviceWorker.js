@@ -4,7 +4,7 @@ const assets = [
   "/snake.html",
   "/css/snake.css",
   "/js/snake.js",
-  "/swipe.js",
+  "/js/swipe.js",
 ]
 
 self.addEventListener("install", installEvent => {
