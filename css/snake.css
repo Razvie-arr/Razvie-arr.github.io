@@ -30,4 +30,8 @@ canvas {
     #guide {
         display: none;
     }
+    #game {
+        width: 350px;
+        height: 350px;
+    }
 }
